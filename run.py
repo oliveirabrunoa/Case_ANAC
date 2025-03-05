@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from project_anac.views import project_anac
 
 app = Flask(__name__)  
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project_anac.db"
 app.register_blueprint(project_anac)
 db = SQLAlchemy()
 db.init_app(app)
