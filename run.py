@@ -12,6 +12,7 @@ app.config['SECRET_KEY'] = 'super secret key'
 
 db.init_app(app)
 lm.init_app(app)
+lm.login_view = 'auth_blueprint.login'
 app.register_blueprint(project_anac)
 app.register_blueprint(auth_blueprint)
 
