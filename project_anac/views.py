@@ -22,6 +22,21 @@ def filtro_mercado():
     
     return render_template('mercados.html', mercados=mercados_unicos)
 
+@project_anac.route('/filtro_data', methods=['GET', 'POST'])
+def filtro_data():
+    lista_meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  # Meses de 1 a 12
+    lista_anos = models.Voos.query.with_entities(models.Voos.ano).distinct().all()  # Anos distintos no banco
+    anos_unicos = [ano[0] for ano in lista_anos]
+
+    if request.method=='POST':
+        mes_selecionado = request.form['mes']
+        ano_selecionado = request.form['ano']
+        
+        voos = models.Voos.query.filter_by(mes=mes_selecionado, ano=ano_selecionado).all()
+        return render_template('datas.html', voos=voos,meses=lista_meses, anos=anos_unicos)
+    
+    return render_template('datas.html', meses=lista_meses, anos=anos_unicos)
+
 
 
 

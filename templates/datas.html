@@ -2,20 +2,29 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Seleção de Mercado</title>
+    <title>Seleção de Mês e Ano</title>
 </head>
 <body>
-    <h2>Selecione o Mercado</h2>
+    <h2>Selecione o Mês e Ano</h2>
 
-    <!-- Formulário para selecionar o mercado -->
-    <form action="/filtro_mercado" method="POST">
-        <label for="mercado">Mercado:</label>
-        <select name="mercado" id="mercado">
-            <!-- Populando o select com os mercados -->
-            {% for mercado in mercados %}
-                <option value="{{ mercado }}">{{ mercado }}</option>
+    <!-- Formulário para selecionar o mês e ano -->
+    <form action="/filtro_data" method="POST">
+        <label for="mes">Mês:</label>
+        <select name="mes" id="mes">
+            {% for mes in meses %}
+                <option value="{{ mes }}">{{ mes }}</option>
             {% endfor %}
         </select>
+        <br><br>
+
+        <label for="ano">Ano:</label>
+        <select name="ano" id="ano">
+            {% for ano in anos %}
+                <option value="{{ ano }}">{{ ano }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
         <button type="submit">Buscar</button>
     </form>
     <table border="1">
@@ -40,6 +49,5 @@
         </tbody>
     </table>
 
-    
 </body>
 </html>
