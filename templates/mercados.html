@@ -11,48 +11,70 @@
     <script defer src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Selecione o Mercado</h2>
-
-        <form action="/filtro_mercado" method="POST" class="row g-3">
-            <div class="col-md-6 offset-md-3">
-                <label for="mercado" class="form-label">Mercado:</label>
-                <select name="mercado" id="mercado" class="form-select">
-                    {% for mercado in mercados %}
-                        <option value="{{ mercado }}">{{ mercado }}</option>
-                    {% endfor %}
-                </select>
+    <div class="d-flex">
+        <nav class="bg-light border-end" style="width: 200px; height: 100vh;">
+            <div class="text-center p-3">
+                <img src="/static/img/anac-logo.png" alt="Logo" class="img-fluid" style="max-width: 100px;">
             </div>
-            <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary">Buscar</button>
-            </div>
-        </form>
+            <ul class="nav flex-column p-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/filtro_data">Filtro por Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/filtro_mercado">Filtro por Mercado</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/grafico_rpk">Gráfico de RPK</a>
+                </li>
+                <li class="nav-item mt-3">
+                    <a class="btn btn-danger w-100" href="/logout">Sair</a>
+                </li>
+            </ul>
+        </nav>
 
-        {% if voos %}
-            <h3 class="text-center mt-5">Voos Filtrados:</h3>
-            <div class="table-responsive">
-                <table id="voosTable" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Mês</th>
-                            <th>Ano</th>
-                            <th>Mercado</th>
-                            <th>RPK</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for voo in voos %}
-                            <tr>
-                                <td>{{ voo.mes }}</td>
-                                <td>{{ voo.ano }}</td>
-                                <td>{{ voo.mercado }}</td>
-                                <td>{{ voo.rpk }}</td>
-                            </tr>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Selecione o Mercado</h2>
+
+            <form action="/filtro_mercado" method="POST" class="row g-3">
+                <div class="col-md-6 offset-md-3">
+                    <label for="mercado" class="form-label">Mercado:</label>
+                    <select name="mercado" id="mercado" class="form-select">
+                        {% for mercado in mercados %}
+                            <option value="{{ mercado }}">{{ mercado }}</option>
                         {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-        {% endif %}
+                    </select>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+
+            {% if voos %}
+                <h3 class="text-center mt-5">Voos Filtrados:</h3>
+                <div class="table-responsive">
+                    <table id="voosTable" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Mês</th>
+                                <th>Ano</th>
+                                <th>Mercado</th>
+                                <th>RPK</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for voo in voos %}
+                                <tr>
+                                    <td>{{ voo.mes }}</td>
+                                    <td>{{ voo.ano }}</td>
+                                    <td>{{ voo.mercado }}</td>
+                                    <td>{{ voo.rpk }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endif %}
+        </div>
     </div>
 
     <script>
