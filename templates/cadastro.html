@@ -32,7 +32,10 @@
 </head>
 <body>
     <div class="register-container">
-        <h2>Cadastro</h2>
+        <h2>Cadastro de Usuários</h2>
+        {% if mensagem %}
+           <h6>{{mensagem}}</h6>
+        {% endif %}
         <form action="/cadastro" method="POST">
             <div class="mb-3">
                 <label for="emailForm" class="form-label">Email:</label>

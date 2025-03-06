@@ -21,7 +21,7 @@ def cadastro():
     senha = request.form['senhaForm']
 
     if models.User.query.filter_by(email=email).first():
-        return render_template('usuario_existente.html')
+        return render_template('cadastro.html', mensagem='Já existe um usuário com este e-mail!')
 
     novo_usuario = models.User(email =email, password = senha)
     db.session.add(novo_usuario)
@@ -40,7 +40,7 @@ def login():
 
     usuario = models.User.query.filter_by(email=email, password=senha).first()
     if not usuario:
-        return "e-mail ou senha incorretos"
+        return render_template('login.html', mensagem="Usuário e/ou senha incorretos")
     
     login_user(usuario)
     return redirect(url_for('project_anac.filtro_data'))

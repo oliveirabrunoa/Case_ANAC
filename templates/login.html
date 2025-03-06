@@ -33,6 +33,9 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
+        {% if mensagem %}
+            <h6>{{mensagem}}</h6>
+        {% endif %}
         <form action="/login" method="POST">
             <div class="mb-3">
                 <label for="emailForm" class="form-label">Email:</label>
