@@ -10,4 +10,4 @@ db.init_app(app)
 app.register_blueprint(project_anac)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

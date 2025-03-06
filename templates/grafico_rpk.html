@@ -3,54 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <title>Gráfico de RPK por Data</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <script defer src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <h2>Selecione o Mercado e o Intervalo de Data para o Gráfico de RPK</h2>
+    <div class="d-flex">
+        <nav class="bg-light border-end" style="width: 200px; height: 100vh;">
+            <div class="text-center p-3">
+                <img src="/static/img/anac-logo.png" alt="Logo" class="img-fluid" style="max-width: 100px;">
+            </div>
+            <ul class="nav flex-column p-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/filtro_data">Filtro por Data</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/filtro_mercado">Filtro por Mercado</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/grafico_rpk">Gráfico de RPK</a>
+                </li>
+                <li class="nav-item mt-4">
+                    <a class="btn btn-danger w-100" href="/logout">Sair</a>
+                </li>
+            </ul>
+        </nav>
 
-    <!-- Formulário para seleção de mercado e intervalo de datas -->
-    <form action="/grafico_rpk" method="POST">
-        <label for="mercado">Mercado:</label>
-        <select name="mercado" id="mercado">
-            {% for mercado in mercados %}
-                <option value="{{ mercado }}">{{ mercado }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
+        <div class="container mt-4">
+            <h2 class="text-center mb-4">Selecione o Mercado e o Intervalo de Data para o Gráfico de RPK</h2>
 
-        <label for="mes_inicio">Mês Início:</label>
-        <select name="mes_inicio" id="mes_inicio">
-            {% for mes in meses %}
-                <option value="{{ mes }}">{{ mes }}</option>
-            {% endfor %}
-        </select>
+            <form action="/grafico_rpk" method="POST" class="row g-3">
+                <div class="col-md-4">
+                    <label for="mercado" class="form-label">Mercado:</label>
+                    <select name="mercado" id="mercado" class="form-select">
+                        {% for mercado in mercados %}
+                            <option value="{{ mercado }}">{{ mercado }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="mes_inicio" class="form-label">Mês Início:</label>
+                    <select name="mes_inicio" id="mes_inicio" class="form-select">
+                        {% for mes in meses %}
+                            <option value="{{ mes }}">{{ mes }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="ano_inicio" class="form-label">Ano Início:</label>
+                    <select name="ano_inicio" id="ano_inicio" class="form-select">
+                        {% for ano in anos %}
+                            <option value="{{ ano }}">{{ ano }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="mes_final" class="form-label">Mês Final:</label>
+                    <select name="mes_final" id="mes_final" class="form-select">
+                        {% for mes in meses %}
+                            <option value="{{ mes }}">{{ mes }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="ano_final" class="form-label">Ano Final:</label>
+                    <select name="ano_final" id="ano_final" class="form-select">
+                        {% for ano in anos %}
+                            <option value="{{ ano }}">{{ ano }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-12 text-center">
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </div>
+            </form>
 
-        <label for="ano_inicio">Ano Início:</label>
-        <select name="ano_inicio" id="ano_inicio">
-            {% for ano in anos %}
-                <option value="{{ ano }}">{{ ano }}</option>
-            {% endfor %}
-        </select>
-
-        <label for="mes_final">Mês Final:</label>
-        <select name="mes_final" id="mes_final">
-            {% for mes in meses %}
-                <option value="{{ mes }}">{{ mes }}</option>
-            {% endfor %}
-        </select>
-
-        <label for="ano_final">Ano Final:</label>
-        <select name="ano_final" id="ano_final">
-            {% for ano in anos %}
-                <option value="{{ ano }}">{{ ano }}</option>
-            {% endfor %}
-        </select>
-
-        <button type="submit">Filtrar</button>
-    </form>
-
-    {% if img_base64 %}
-        <h3>Gráfico de RPK:</h3>
-        <img src="data:image/png;base64,{{ img_base64 }}" alt="Gráfico de RPK">
-    {% endif %}
+            {% if img_base64 %}
+                <h3 class="text-center mt-5">Gráfico de RPK:</h3>
+                <div class="text-center">
+                    <img src="data:image/png;base64,{{ img_base64 }}" alt="Gráfico de RPK" class="img-fluid">
+                </div>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>
