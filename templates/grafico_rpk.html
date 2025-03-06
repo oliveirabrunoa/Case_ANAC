@@ -2,20 +2,27 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Filtro de Voos por Intervalo de Data</title>
+    <title>Gráfico de RPK por Data</title>
 </head>
 <body>
-    <h2>Selecione o Intervalo de Mês e Ano</h2>
+    <h2>Selecione o Mercado e o Intervalo de Data para o Gráfico de RPK</h2>
 
-    <!-- Formulário para selecionar intervalo de mês e ano -->
-    <form action="/filtro_data" method="POST">
+    <!-- Formulário para seleção de mercado e intervalo de datas -->
+    <form action="/grafico_rpk" method="POST">
+        <label for="mercado">Mercado:</label>
+        <select name="mercado" id="mercado">
+            {% for mercado in mercados %}
+                <option value="{{ mercado }}">{{ mercado }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+
         <label for="mes_inicio">Mês Início:</label>
         <select name="mes_inicio" id="mes_inicio">
             {% for mes in meses %}
                 <option value="{{ mes }}">{{ mes }}</option>
             {% endfor %}
         </select>
-        <br><br>
 
         <label for="ano_inicio">Ano Início:</label>
         <select name="ano_inicio" id="ano_inicio">
@@ -23,7 +30,6 @@
                 <option value="{{ ano }}">{{ ano }}</option>
             {% endfor %}
         </select>
-        <br><br>
 
         <label for="mes_final">Mês Final:</label>
         <select name="mes_final" id="mes_final">
@@ -31,7 +37,6 @@
                 <option value="{{ mes }}">{{ mes }}</option>
             {% endfor %}
         </select>
-        <br><br>
 
         <label for="ano_final">Ano Final:</label>
         <select name="ano_final" id="ano_final">
@@ -39,33 +44,13 @@
                 <option value="{{ ano }}">{{ ano }}</option>
             {% endfor %}
         </select>
-        <br><br>
 
         <button type="submit">Filtrar</button>
     </form>
 
-    {% if voos %}
-        <h3>Voos Filtrados:</h3>
-        <table border="1">
-            <thead>
-                <tr>                  
-                    <th>Mês</th>
-                    <th>Ano</th>                 
-                    <th>Mercado</th>
-                    <th>RPK</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for voo in voos %}
-                    <tr>
-                        <td>{{ voo.mes }}</td>
-                        <td>{{ voo.ano }}</td>
-                        <td>{{ voo.mercado }}</td>
-                        <td>{{ voo.rpk }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+    {% if img_base64 %}
+        <h3>Gráfico de RPK:</h3>
+        <img src="data:image/png;base64,{{ img_base64 }}" alt="Gráfico de RPK">
     {% endif %}
 </body>
 </html>

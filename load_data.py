@@ -19,6 +19,9 @@ def load_data_csv():
     colunas_selecionadas = filtro[['EMPRESA_SIGLA','GRUPO_DE_VOO','NATUREZA',
                                 'AEROPORTO_DE_ORIGEM_SIGLA','AEROPORTO_DE_DESTINO_SIGLA',
                                 'MES','ANO','RPK']]
+    
+    colunas_selecionadas = colunas_selecionadas.copy()
+    colunas_selecionadas['RPK'].fillna(0, inplace=True)
 
     dados_voos = colunas_selecionadas.values.tolist()
     insert_database(dados_voos)
@@ -26,10 +29,11 @@ def load_data_csv():
 def insert_database(dados_voos):
     voos_filtrados = []
     for voo in dados_voos:
+        rpk = voo[7] if voo[7] not in [None, "NULL", ""] else 0
         voo = Voos(ano = voo[6],
             mes = voo[5],
             mercado = ''.join(sorted([voo[3], voo[4]])),
-            rpk = voo[7])
+            rpk = rpk)
         voos_filtrados.append(voo)
 
     with app.app_context():
