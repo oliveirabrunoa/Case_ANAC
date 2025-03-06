@@ -2,6 +2,7 @@ import pandas as pd
 from db import db
 from run import app
 from project_anac.models import Voos
+from authenticate.models import User
 
 def create_database():
     # Criação do banco e tabelas

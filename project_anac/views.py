@@ -1,19 +1,21 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 from . import models
 from db import db
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
+from flask_login import login_required
 
 project_anac = Blueprint('project_anac', __name__)
 
 @project_anac.route('/', methods=['GET'])
 def index():
     voos = models.Voos.query.all()
-    return render_template('index.html', voos=voos)
+    return redirect(url_for('auth_blueprint.login'))
 
 
 @project_anac.route('/filtro_mercado', methods=['GET', 'POST'])
+@login_required
 def filtro_mercado():
     lista_mercados = models.Voos.query.with_entities(models.Voos.mercado).distinct().all()
     mercados_unicos = [mercado[0] for mercado in lista_mercados]
@@ -28,6 +30,7 @@ def filtro_mercado():
 
 
 @project_anac.route('/filtro_data', methods=['GET', 'POST'])
+@login_required
 def filtro_data():
     lista_meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  # Meses de 1 a 12
     lista_anos = models.Voos.query.with_entities(models.Voos.ano).distinct().all()  # Anos distintos no banco
@@ -51,6 +54,7 @@ def filtro_data():
 
 
 @project_anac.route('/grafico_rpk', methods=['GET', 'POST'])
+@login_required
 def grafico_rpk():
     lista_meses = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]  # Meses de 1 a 12
     lista_anos = models.Voos.query.with_entities(models.Voos.ano).distinct().all()  # Anos distintos no banco
