@@ -3,14 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tela de Cadastro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('https://source.unsplash.com/1600x900/?city,architecture') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
-    <form action="/cadastro" method="POST">
-    Email: <input type="text" name="emailForm">
-    Senha: <input type="text" name="senhaForm">
-     
-     <button type="submit">Cadastrar Usuário</button>
-    </form>
+    <div class="register-container">
+        <h2>Cadastro</h2>
+        <form action="/cadastro" method="POST">
+            <div class="mb-3">
+                <label for="emailForm" class="form-label">Email:</label>
+                <input type="email" class="form-control" name="emailForm" id="emailForm" required>
+            </div>
+            <div class="mb-3">
+                <label for="senhaForm" class="form-label">Senha:</label>
+                <input type="password" class="form-control" name="senhaForm" id="senhaForm" required>
+            </div>
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Cadastrar Usuário</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
