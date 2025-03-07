@@ -33,7 +33,7 @@
             <h2 class="text-center mb-4">Selecione o Mercado e o Intervalo de Data para o Gráfico de RPK</h2>
 
             <form action="/grafico_rpk" method="POST" class="row g-3">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label for="mercado" class="form-label">Mercado:</label>
                     <select name="mercado" id="mercado" class="form-select">
                         {% for mercado in mercados %}
@@ -41,7 +41,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <label for="mes_inicio" class="form-label">Mês Início:</label>
                     <select name="mes_inicio" id="mes_inicio" class="form-select">
                         {% for mes in meses %}
@@ -49,7 +49,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <label for="ano_inicio" class="form-label">Ano Início:</label>
                     <select name="ano_inicio" id="ano_inicio" class="form-select">
                         {% for ano in anos %}
@@ -57,7 +57,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <label for="mes_final" class="form-label">Mês Final:</label>
                     <select name="mes_final" id="mes_final" class="form-select">
                         {% for mes in meses %}
@@ -65,7 +65,7 @@
                         {% endfor %}
                     </select>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <label for="ano_final" class="form-label">Ano Final:</label>
                     <select name="ano_final" id="ano_final" class="form-select">
                         {% for ano in anos %}
