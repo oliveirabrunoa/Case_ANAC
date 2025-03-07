@@ -37,5 +37,22 @@ Instale as dependências do projeto descritas no requirements.txt
 pip install -r requirements
 ```
 
+### Running
+
+Faça o download da base de dados "Dados_Estatisticos.csv" disponível em: 
+
+https://sistemas.anac.gov.br/dadosabertos/Voos%20e%20opera%C3%A7%C3%B5es%20a%C3%A9reas/Dados%20Estat%C3%ADsticos%20do%20Transporte%20A%C3%A9reo/
+
+Em seguida, faça a carga dos dados
+
+```
+python load_data.py
+```
+
+Execute a aplicação
+
+```
+python run.py
+```
 
 
