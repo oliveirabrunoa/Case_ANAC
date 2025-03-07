@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from . import models
 from db import db
-import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 from io import BytesIO
 import base64
