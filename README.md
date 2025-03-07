@@ -1,6 +1,6 @@
 # Case ANAC
 
-Este projeto foi desenvolvido como etapa de avaliação técnica. Foi desenvolvido em Python, utilizando o framework Flask e SQLAlchemy, e bibliotecas como pandas, plotly, dentre outras.
+Este projeto foi desenvolvido como etapa de avaliação técnica utilizando dados públicos da ANAC (Agência Nacional de Aviação Civil). Utilizamos no projeto a linguagem Python, juntamente com os frameworks Flask e SQLAlchemy, e bibliotecas como pandas, plotly, dentre outras.
 
 ## Getting Started
 
