@@ -22,7 +22,7 @@ def load_data_csv():
                                 'MES','ANO','RPK']]
     
     colunas_selecionadas = colunas_selecionadas.copy()
-    colunas_selecionadas['RPK'].fillna(0, inplace=True)
+    colunas_selecionadas.fillna({'RPK': 0}, inplace=True)
 
     dados_voos = colunas_selecionadas.values.tolist()
     insert_database(dados_voos)
