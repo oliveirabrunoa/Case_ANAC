@@ -55,4 +55,7 @@ Execute a aplicação
 python run.py
 ```
 
+### Deployment
+
+Acesse a aplicação disponível em: https://brunooliveira.pythonanywhere.com/login
 
