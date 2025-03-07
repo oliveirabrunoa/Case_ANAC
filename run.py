@@ -11,10 +11,13 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config['SECRET_KEY'] = 'super secret key'
 
 db.init_app(app)
+with app.app_context(): 
+    db.create_all()
+
 lm.init_app(app)
 lm.login_view = 'auth_blueprint.login'
 app.register_blueprint(project_anac)
 app.register_blueprint(auth_blueprint)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port= 5000)
